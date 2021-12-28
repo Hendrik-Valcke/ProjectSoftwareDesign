@@ -1,5 +1,6 @@
 package com.company.tickets;
 
+import com.company.database.UserDatabase;
 import com.company.users.User;
 
 import java.util.HashMap;
@@ -18,15 +19,17 @@ public class UnevenTicket extends Ticket{
     }
 
     public void addPayer(User u, Double d) {
-        double totalAlreadySplit = 0;
-        if(!amountsOwed.isEmpty()) {
-            for(Double value: amountsOwed.values()) {
-                totalAlreadySplit += value;
+        if(UserDatabase.getInstance().contains(u)) {
+            double totalAlreadySplit = 0;
+            if(!amountsOwed.isEmpty()) {
+                for(Double value: amountsOwed.values()) {
+                    totalAlreadySplit += value;
+                }
             }
-        }
 
-        if( totalAlreadySplit +d <= this.amountPayed) {
-            this.amountsOwed.put(u,d);
+            if( totalAlreadySplit +d <= this.amountPayed) {
+                this.amountsOwed.put(u,d);
+            }
         }
     }
 
@@ -37,7 +40,6 @@ public class UnevenTicket extends Ticket{
             Double value = entry.getValue();
             key.subtractSaldo(value);
             creator.addSaldo(value);
-
         }
 
 

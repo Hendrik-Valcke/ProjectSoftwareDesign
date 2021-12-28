@@ -26,6 +26,8 @@ public class UserDatabase<T> implements Iterable<T> {
 
     public int size() {return this.db.size(); }
 
+    public boolean contains(User u) {return this.db.contains(u) ;}
+
 
     @Override
     public Iterator<T> iterator() {
