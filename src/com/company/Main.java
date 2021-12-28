@@ -1,13 +1,16 @@
 package com.company;
 
-import com.company.GUI.ViewFrame;
+import com.company.GUI.Window;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello world3");
-        ViewFrame view = new ViewFrame();
-        view.initialize();
-        view.showLoginPanel();
+        System.out.println("testing gui:");
+        Window mainWindow = new Window();
+        mainWindow.showCustomTicketScreen();
+        mainWindow.setVisible(true);
     }
 }
