@@ -5,32 +5,42 @@ import com.company.tickets.Ticket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
-public class TicketDatabase {
-    private static TicketDatabase instance;
-    private final ArrayList<Ticket> db;
-    private int currentSize=0;
+public class TicketDatabase<T> implements Iterable<T> {
+    static TicketDatabase<Ticket> instance;
+    private final ArrayList<T> db;
 
     private TicketDatabase() { this.db = new ArrayList<>(); }
 
-    public static TicketDatabase getInstance() {
+    public static TicketDatabase<Ticket> getInstance() {
         if(instance == null) {
-            instance = new TicketDatabase();
+            instance = new TicketDatabase<>();
         }
         return instance;
     }
 
-    public int getCurrentSize() {
-        return currentSize;
-    }
-
-    public void addTicket(Ticket t) {
+    public void addTicket(T t) {
         db.add(t);
-        currentSize +=1;
     }
 
-    public void removeTicket(Ticket t) {
-        if(db.contains(t)) {currentSize-=1;}
+    public void removeTicket(T t) {
         db.remove(t);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return this.db.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+        this.db.forEach(action);
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return this.db.spliterator();
     }
 }
