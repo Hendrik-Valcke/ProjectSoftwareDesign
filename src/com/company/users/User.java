@@ -47,4 +47,8 @@ public class User {
         this.balance -= amount;
     }
 
+    public void printUser() {
+        System.out.println("User: " + this.name + " balance: " + this.balance);
+    }
+
 }

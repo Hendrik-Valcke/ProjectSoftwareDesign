@@ -1,23 +1,32 @@
 package com.company;
 
+import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
-import com.company.tickets.EvenTicket;
+import com.company.factories.UserFactory;
 import com.company.tickets.Ticket;
+import com.company.tickets.UnevenTicket;
 import com.company.users.User;
 
 public class Main {
 
     public static void main(String[] args) {
         UserDatabase<User> Udb = UserDatabase.getInstance();
-        User jeff = new User("jeff");
-        User bart = new User("bart");
+        TicketDatabase<Ticket> Tdb = TicketDatabase.getInstance();
+        UserFactory Uf = new UserFactory();
+
+        User jeff = Uf.getUser("jeff");
+        User bart = Uf.getUser("bart");
         Udb.add(bart);
         Udb.add(jeff);
-        Ticket t = new EvenTicket(bart, 200);
-        t.calculateSplit();
-        System.out.println(bart.getBalance());
-        System.out.println(jeff.getBalance());
-        Udb.forEach(user -> System.out.println(user.getBalance()));
+
+        UnevenTicket t = new UnevenTicket(bart, 200,"cinema");
+        t.addPayer(jeff, 10.0);
+        Tdb.addTicket(t);
+
+        Tdb.forEach(Ticket::calculateSplit);
+        Tdb.forEach(Ticket::printTicket);
+        Udb.forEach(User::printUser);
+
 
 
 
