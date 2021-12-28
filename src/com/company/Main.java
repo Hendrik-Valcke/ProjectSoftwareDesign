@@ -1,5 +1,10 @@
 package com.company;
 
+import com.company.GUI.Window;
+
+import javax.swing.*;
+import java.awt.*;
+
 import com.company.database.UserDatabase;
 import com.company.tickets.EvenTicket;
 import com.company.tickets.Ticket;
@@ -8,6 +13,10 @@ import com.company.users.User;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("testing gui:");
+        Window mainWindow = new Window();
+        mainWindow.showCustomTicketScreen();
+        mainWindow.setVisible(true);
         UserDatabase<User> Udb = UserDatabase.getInstance();
         User jeff = new User("jeff");
         User bart = new User("bart");
