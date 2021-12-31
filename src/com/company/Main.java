@@ -22,20 +22,8 @@ public class Main {
         Window mainWindow = new Window();
         mainWindow.showCustomTicketScreen();
         mainWindow.setVisible(true);*/
-        /*
-        UserDatabase<User> Udb = UserDatabase.getInstance();
-        TicketDatabase<Ticket> Tdb = TicketDatabase.getInstance();
-        UserFactory Uf = new UserFactory();
 
-        User jeff = Uf.getUser("jeff");
-        User bart = Uf.getUser("bart");
-        Udb.add(bart);
-        Udb.add(jeff);
-        Ticket t = new EvenTicket(bart, 200);
-        t.calculateSplit();
-        System.out.println(bart.getBalance());
-        System.out.println(jeff.getBalance());
-        Udb.forEach(user -> System.out.println(user.getBalance()));*/
+
     }
 
     void run()
@@ -52,7 +40,25 @@ public class Main {
 
         ////maak db aan
         System.out.println("make model");
-        Model model= new Model(TicketDatabase.getInstance(),UserDatabase.getInstance());
+        Model model= new Model();
+        UserDatabase<User> Udb = UserDatabase.getInstance();
+        TicketDatabase<Ticket> Tdb = TicketDatabase.getInstance();
+        UserFactory Uf = new UserFactory();
+
+        User jeff = Uf.getUser("jeff");
+        User bart = Uf.getUser("bart");
+        Udb.add(bart);
+        Udb.add(jeff);
+
+        UnevenTicket t = new UnevenTicket(bart, 200,"cinema");
+        t.addPayer(jeff, 10.0);
+        Tdb.addTicket(t);
+
+        Tdb.forEach(Ticket::printTicket);
+        Udb.forEach(User::printUser);
+
+        model.calculateTotal();
+        model.printDebts();
 
         ////maak window aan
         System.out.println("make view");
