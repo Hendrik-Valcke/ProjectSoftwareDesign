@@ -41,8 +41,6 @@ public class UnevenTicket extends Ticket{
             key.subtractSaldo(value);
             creator.addSaldo(value);
         }
-
-
     }
 
     @Override
