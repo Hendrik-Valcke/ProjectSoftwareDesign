@@ -13,15 +13,27 @@ public class LoginScreen implements SubFrame{
     private JButton loginButton;
     private JLabel pwLabel;
     private JLabel userLabel;
+    private JButton cancelButton;
 
     public LoginScreen() {
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
 
-            }
-        });
     }
+    public String getPassWord()
+    {
+        return new String(pwField.getPassword());
+    }
+    public String getName()
+    {
+        return userField.getText();
+    }
+
+    public void addListener(ActionListener listenForCancel,ActionListener listenForLogin)
+    {
+        loginButton.addActionListener(listenForLogin);
+        cancelButton.addActionListener(listenForCancel);
+    }
+
+
 
     @Override
     public JPanel getRootPanel() {

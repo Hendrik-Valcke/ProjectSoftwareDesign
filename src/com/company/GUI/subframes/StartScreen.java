@@ -17,18 +17,19 @@ public class StartScreen implements SubFrame {
     private JPanel midPanel;
 
     public StartScreen() {
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+    }
 
-            }
-        });
-        createUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+    public void enableLoginButton(boolean enable)
+    {
+        //if enable is false the button will be disabled
+        loginButton.setEnabled(enable);
+    }
 
-            }
-        });
+
+    public void addListener(ActionListener listenForCreate,ActionListener listenForLogin)
+    {
+        loginButton.addActionListener(listenForLogin);
+        createUserButton.addActionListener(listenForCreate);
     }
 
     @Override

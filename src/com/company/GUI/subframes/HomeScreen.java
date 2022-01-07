@@ -1,7 +1,6 @@
 package com.company.GUI.subframes;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeScreen implements SubFrame{
@@ -9,7 +8,7 @@ public class HomeScreen implements SubFrame{
     private JList ticketList;
     private JButton evenTicketButton;
     private JLabel titleLabel;
-    private JButton changeUserButton;
+    private JButton logOutButton;
     private JButton specialTicketButton;
     private JList userList;
     private JLabel ticketListLabel;
@@ -20,36 +19,23 @@ public class HomeScreen implements SubFrame{
     private JPanel panel2;
     private JPanel panel5;
     private JPanel panel4;
+    private JButton addUserButton;
+    private JButton removeUserButton;
 
     public HomeScreen() {
-        changeUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
-        evenTicketButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
-        specialTicketButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
     }
 
     @Override
     public JPanel getRootPanel() {
         return this.rootPanel;
+    }
+
+    public void addListener(ActionListener logOutListener, ActionListener evenTicketListener, ActionListener specialTicketListener, ActionListener calcListener,ActionListener addUListerner, ActionListener remUListener) {
+        logOutButton.addActionListener(logOutListener);
+        evenTicketButton.addActionListener(evenTicketListener);
+        specialTicketButton.addActionListener(specialTicketListener);
+        calculateButton.addActionListener(calcListener);
+        addUserButton.addActionListener(addUListerner);
+        removeUserButton.addActionListener(remUListener);
     }
 }

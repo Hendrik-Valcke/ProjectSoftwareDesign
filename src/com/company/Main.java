@@ -2,14 +2,9 @@ package com.company;
 
 import com.company.GUI.Window;
 
-import javax.swing.*;
-import java.awt.*;
-
 import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
-import com.company.factories.UserFactory;
 import com.company.tickets.Ticket;
-import com.company.tickets.UnevenTicket;
 import com.company.users.User;
 
 public class Main {
@@ -43,9 +38,9 @@ public class Main {
         Model model= new Model();
         UserDatabase<User> Udb = UserDatabase.getInstance();
         TicketDatabase<Ticket> Tdb = TicketDatabase.getInstance();
-        UserFactory Uf = new UserFactory();
+        //UserFactory Uf = new UserFactory();
 
-        User jeff = Uf.getUser("jeff");
+        /*User jeff = Uf.getUser("jeff");
         User bart = Uf.getUser("bart");
         Udb.add(bart);
         Udb.add(jeff);
@@ -58,7 +53,7 @@ public class Main {
         Udb.forEach(User::printUser);
 
         model.calculateTotal();
-        model.printDebts();
+        model.printDebts();*/
 
         ////maak window aan
         System.out.println("make view");
@@ -69,7 +64,7 @@ public class Main {
         Controller controller= new Controller(model,view);
 
         // begin in startscreen, knoppen bepalen volgende stappen
-        controller.start();
+        controller.go2Start();
 
     }
 }
