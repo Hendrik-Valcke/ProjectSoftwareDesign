@@ -20,13 +20,8 @@ public class Controller {
     public void go2Start()
     {
         System.out.println("controller:start");
-        if (UserDatabase.getInstance().size()==0)//if there are no users, show a grayed out loginbutton
-        {
-            view.showStartScreen(false, new Go2CreateUserListener(), new Go2LoginListener());
-        }else
-        {
-            view.showStartScreen(true, new Go2CreateUserListener(), new Go2LoginListener());
-        }
+        //if there are no users, show a grayed out loginbutton
+        view.showStartScreen(UserDatabase.getInstance().size() != 0, new Go2CreateUserListener(), new Go2LoginListener());
         view.setVisible(true);
     }
     public void go2CreateUser()
