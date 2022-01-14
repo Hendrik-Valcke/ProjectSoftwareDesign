@@ -3,7 +3,6 @@ package com.company.database;
 import com.company.tickets.Ticket;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;

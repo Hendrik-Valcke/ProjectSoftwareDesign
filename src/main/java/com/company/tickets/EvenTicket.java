@@ -1,11 +1,7 @@
 package com.company.tickets;
 
-import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
 import com.company.users.User;
-
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class EvenTicket extends Ticket{
     private final String event;
@@ -17,6 +13,14 @@ public class EvenTicket extends Ticket{
         this.amountPayed = amountPayed;
         this.event = event;
 
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public double getAmountPayed() {
+        return amountPayed;
     }
 
     @Override
