@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class Controller {
     private Window view;
     private Model model;
+    private String returnScreen="start";
 
 
     public Controller(Model model, Window view) {
@@ -31,24 +32,26 @@ public class Controller {
     }
     public void go2CreateUser()
     {
-        view.showCreateUserScreen(new Go2StartListener(),new SaveUserListener());
+        view.showCreateUserScreen(new Return2ScreenListener(),new SaveUserListener());
         view.setVisible(true);
     }
     public void go2Login()
     {
         //triggered when the user presses 'login'in startscreen or 'change user' in homescreen
         //the user will enter info and press the login button
-        view.showLoginScreen(new Go2StartListener(),new LoginListener());
+        view.showLoginScreen(new Return2ScreenListener(),new LoginListener());
         view.setVisible(true);
 
     }
     public void go2Home()
     {
+        returnScreen="home";
         view.showHomeScreen(new Go2StartListener(),new Go2CreateEvenTicketListener(),new Go2CreateSpecialTicketListener(),new CalcListener(), new Go2CreateUserListener(), new Go2RemoveUserListener());
         view.setVisible(true);
     }
     private void go2RemoveUser() {
-    //view.showRemoveUserScreen()
+        //view.showRemoveUserScreen(new Return2PrevScreenListener,new RemoveUserListener)
+        //view.setVisible(true)
     }
 
 
@@ -75,7 +78,7 @@ public class Controller {
             String name = view.getCuScreen().getName();
             String pw= view .getCuScreen().getPassWord();
             createUser(name,pw);
-            go2Start();
+            returnToPrevScreen();
         }
     }
     class Go2LoginListener implements ActionListener//go to loginscreen
@@ -98,14 +101,14 @@ public class Controller {
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+           // go2CreateEvenTicket();
         }
     }
     class Go2CreateSpecialTicketListener implements ActionListener//go to special ticket creator
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+            //go2CreateSpecialTicket();
         }
     }
     class CalcListener implements ActionListener//calculate debts and show in debtscreen
@@ -122,16 +125,18 @@ public class Controller {
             go2RemoveUser();
         }
     }
-
-
+    class Return2ScreenListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            returnToPrevScreen();
+        }
+    }
 
     //methods to interact with model
     public void createUser(String name, String pw)
     {
         model.addUserToDB(name,pw);
-        go2Start();
-        //System.out.println("name: "+name);
-        //System.out.println("pw: " +pw);
     }
     public void checkLogin(String name,String password)
     {
@@ -143,11 +148,16 @@ public class Controller {
         }else{//login failed: show error and reset loginscreen
             view.showErrorMessage("The entered name and password combination don't exist. Try again");
         }
-        //if the check returns positive:
-        //send to homescreen
-        //Home();
-        //if the check returns negative:
-        //make a messagebox:error wrong info...
-        //startLogin()
     }
+
+    public void returnToPrevScreen()
+    {
+        System.out.println("returning to "+returnScreen);
+        if (returnScreen.equals("start"))
+        {
+            go2Start();
+        }else if (returnScreen.equals("home"))
+            go2Home();
+    }
+
 }
