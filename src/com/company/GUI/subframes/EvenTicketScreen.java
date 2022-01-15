@@ -9,9 +9,9 @@ public class EvenTicketScreen implements SubFrame{
     private JButton saveTicketButton;
     private JButton cancelButton;
     private JLabel titleLabel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
+    private JTextField eventTextField;
+    private JTextField creatorTextField;
+    private JTextField amountPaidTextField;
 
     public EvenTicketScreen() {
         cancelButton.addActionListener(new ActionListener() {
@@ -31,5 +31,22 @@ public class EvenTicketScreen implements SubFrame{
     @Override
     public JPanel getRootPanel() {
         return this.rootPanel;
+    }
+
+    public void addListener(ActionListener cancelListener, ActionListener createTicketListener) {
+        cancelButton.addActionListener(cancelListener);
+        saveTicketButton.addActionListener(createTicketListener);
+    }
+
+    public String getCreator() {
+        return creatorTextField.getText();
+    }
+
+    public String getEvent() {
+        return eventTextField.getText();
+    }
+
+    public double getAmountPaid() {
+        return Double.parseDouble(amountPaidTextField.getText());
     }
 }

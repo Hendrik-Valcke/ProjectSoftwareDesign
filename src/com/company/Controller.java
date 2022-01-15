@@ -3,6 +3,7 @@ package com.company;
 import com.company.GUI.Window;
 import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
+import com.company.users.User;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ public class Controller {
     //basically all buttons call a function of the controller
     public void go2Start()
     {
-        System.out.println("controller:start");
+        returnScreen="start";
         //if there are no users, show a grayed out loginbutton
         view.showStartScreen(UserDatabase.getInstance().size() != 0, new Go2CreateUserListener(), new Go2LoginListener());
         view.setVisible(true);
@@ -42,11 +43,21 @@ public class Controller {
     public void go2Home()
     {
         returnScreen="home";
-        view.showHomeScreen(new Go2StartListener(),new Go2CreateEvenTicketListener(),new Go2CreateSpecialTicketListener(),new CalcListener(), new Go2CreateUserListener(), new Go2RemoveUserListener(), getTicketContents(),getUsernames());
+        view.showHomeScreen(new Go2StartListener(),new Go2CreateEvenTicketListener(),new Go2CreateCustomTicketListener(),new CalcListener(), new Go2CreateUserListener(), new Go2RemoveUserListener(), getTicketContents(),getUsernames());
         view.setVisible(true);
     }
     private void go2RemoveUser() {
         view.showRemoveUserScreen(new Return2ScreenListener(),new RemoveUserListener(),getUsernames());
+        view.setVisible(true);
+    }
+    private void go2CreateEvenTicket()
+    {
+        view.showEvenTicketScreen(new Return2ScreenListener(),new CreateEvenTicketListener());
+        view.setVisible(true);
+    }
+    private void go2CreateCustomTicket()
+    {
+        view.showCustomTicketScreen( new Return2ScreenListener(),new CreateCustomTicketListener(),getUsernames());
         view.setVisible(true);
     }
 
@@ -97,14 +108,14 @@ public class Controller {
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-           // go2CreateEvenTicket();
+           go2CreateEvenTicket();
         }
     }
-    class Go2CreateSpecialTicketListener implements ActionListener//go to special ticket creator
+    class Go2CreateCustomTicketListener implements ActionListener//go to special ticket creator
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            //go2CreateSpecialTicket();
+            go2CreateCustomTicket();
         }
     }
     class CalcListener implements ActionListener//calculate debts and show in debtscreen
@@ -140,6 +151,29 @@ public class Controller {
                 go2Start();
             }else
                 returnToPrevScreen();
+        }
+    }
+    class CreateEvenTicketListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            String creator=view.getEvenTicketCreator();
+            String event=view.getEvenTicktEvent();
+            double amountPaid=view.getEvenTicketAmountPaid();
+            model.createAndAddTicket(creator,event,amountPaid);
+            returnToPrevScreen();
+        }
+    }
+
+    class CreateCustomTicketListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            String creator=view.getEvenTicketCreator();
+            String event=view.getEvenTicktEvent();
+            double amountPaid=view.getEvenTicketAmountPaid();
+            model.createAndAddTicket(creator,event,amountPaid);
+            returnToPrevScreen();
         }
     }
 

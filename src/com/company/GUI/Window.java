@@ -2,6 +2,7 @@ package com.company.GUI;
 
 import com.company.Controller;
 import com.company.GUI.subframes.*;
+import com.company.users.User;
 
 import javax.swing.*;
 import javax.xml.stream.events.StartDocument;
@@ -15,6 +16,8 @@ public class Window extends JFrame {
     private LoginScreen loginScreen;
     private HomeScreen homeScreen;
     private RemoveUserScreen ruScreen;
+    private EvenTicketScreen etScreen;
+    private CustomTicketScreen ctScreen;
 
     public Window() {
         super("Moneysplitter");
@@ -36,13 +39,12 @@ public class Window extends JFrame {
         loginScreen.addListener( cancelListener, loginListener);
         this.setContentPane(loginScreen.getRootPanel());
     }
-
-    public void showCreateUserScreen(ActionListener cancelListener,ActionListener createUserListener) {
+    public void showCreateUserScreen(ActionListener cancelListener,ActionListener createUserListener)
+    {
         cuScreen= new CreateUserScreen();
         cuScreen.addListener(cancelListener,createUserListener);
         this.setContentPane(cuScreen.getRootPanel());
     }
-
     public void showHomeScreen(ActionListener logOutListener,ActionListener evenTicketListener,ActionListener specialTicketListener,ActionListener calcListener, ActionListener addUListener, ActionListener remUListener,String[] ticketContents, String[] userNames)
     {
         homeScreen= new HomeScreen(ticketContents,  userNames);
@@ -55,15 +57,17 @@ public class Window extends JFrame {
         ruScreen.addListener(cancelListener,removeUserListener);
         this.setContentPane(ruScreen.getRootPanel());
     }
-    public void showEvenTicketScreen()
+    public void showEvenTicketScreen(ActionListener cancelListener, ActionListener createTicketListener)
     {
-        JPanel panel= new EvenTicketScreen().getRootPanel();
-        this.setContentPane(panel);
+        etScreen = new EvenTicketScreen();
+        etScreen.addListener(cancelListener,createTicketListener);
+        this.setContentPane(etScreen.getRootPanel());
     }
-    public void showCustomTicketScreen()
+    public void showCustomTicketScreen(ActionListener cancelListener, ActionListener createTicketListener,String[] userNames)
     {
-        JPanel panel= new CustomTicketScreen().getRootPanel();
-        this.setContentPane(panel);
+        ctScreen = new CustomTicketScreen(userNames);
+        ctScreen.addListener(cancelListener,createTicketListener);
+        this.setContentPane(ctScreen.getRootPanel());
     }
 
     //getters
@@ -79,7 +83,6 @@ public class Window extends JFrame {
     {
         return ruScreen.getName();
     }
-
     public LoginScreen getLoginScreen()
     {
         return loginScreen;
@@ -88,6 +91,14 @@ public class Window extends JFrame {
     {
         JOptionPane.showMessageDialog(this,message);
     }
-
+    public String getEvenTicketCreator() {
+        return etScreen.getCreator();
+    }
+    public String getEvenTicktEvent() {
+        return etScreen.getEvent();
+    }
+    public double getEvenTicketAmountPaid() {
+        return etScreen.getAmountPaid();
+    }
 }
 
