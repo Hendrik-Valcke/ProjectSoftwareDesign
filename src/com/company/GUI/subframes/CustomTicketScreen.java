@@ -49,18 +49,21 @@ public class CustomTicketScreen implements SubFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 userDebts[userList.getSelectedIndex()]= Double.parseDouble(shareField.getText());
+                //userList.setSelectedIndex(0);
                 updateList();
             }
         });
     }
     public void updateList()
     {
+        userModel = new DefaultListModel();
         userModel.removeAllElements();
+        System.out.println("update");
         for (int i = 0; i < userString.length; i++) {
             System.out.println(userString[i]+" "+userDebts[i]);
             userModel.addElement(userString[i]+" "+userDebts[i]);
         }
-        //userList.setModel(userModel);
+        userList.setModel(userModel);
     }
 
     @Override
@@ -83,5 +86,9 @@ public class CustomTicketScreen implements SubFrame{
 
     public double getAmountPaid() {
         return Double.parseDouble(amountPaidTextField.getText());
+    }
+
+    public double[] getUserDebts() {
+        return userDebts;
     }
 }

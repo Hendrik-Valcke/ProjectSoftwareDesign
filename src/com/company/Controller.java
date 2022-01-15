@@ -60,6 +60,11 @@ public class Controller {
         view.showCustomTicketScreen( new Return2ScreenListener(),new CreateCustomTicketListener(),getUsernames());
         view.setVisible(true);
     }
+    private void go2EndScreen()
+    {
+        view.showEndsScreen(new Return2ScreenListener(),getUsernames(),getDebtData());
+        view.setVisible(true);
+    }
 
 
 
@@ -122,7 +127,8 @@ public class Controller {
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-
+            System.out.println("end");
+            go2EndScreen();
         }
     }
     class Go2RemoveUserListener implements ActionListener //go to create user screen
@@ -160,20 +166,30 @@ public class Controller {
             String creator=view.getEvenTicketCreator();
             String event=view.getEvenTicktEvent();
             double amountPaid=view.getEvenTicketAmountPaid();
-            model.createAndAddTicket(creator,event,amountPaid);
+            model.createAndAddEvenTicket(creator,event,amountPaid);
             returnToPrevScreen();
         }
     }
-
     class CreateCustomTicketListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            String creator=view.getEvenTicketCreator();
-            String event=view.getEvenTicktEvent();
-            double amountPaid=view.getEvenTicketAmountPaid();
-            model.createAndAddTicket(creator,event,amountPaid);
-            returnToPrevScreen();
+            String creator=view.getCustomTicketCreator();
+            String event=view.getCustomTicktEvent();
+            double amountPaid=view.getCustomTicketAmountPaid();
+            double[] userDebts=view.getCustomTicketDebts();
+            double sum=0;
+            for (int i = 0; i < userDebts.length; i++) {
+                sum=sum+userDebts[i];
+            }
+            if (amountPaid==sum)
+            {
+                model.createAndAddCustomTicket(creator,event,amountPaid,userDebts);
+                returnToPrevScreen();
+            }else{
+                view.showErrorMessage("the shares don't add up to the total");
+            }
+
         }
     }
 
@@ -210,6 +226,11 @@ public class Controller {
     {
         String[] usernames=model.getUserNames();
         return usernames;
+    }
+    public double[][] getDebtData()
+    {
+        System.out.println("getdebtdata");
+        return model.getDebtData() ;
     }
 
 }

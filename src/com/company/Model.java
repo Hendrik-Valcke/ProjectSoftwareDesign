@@ -4,8 +4,13 @@ import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
 import com.company.factories.TicketFactory;
 import com.company.factories.UserFactory;
+import com.company.tickets.EvenTicket;
 import com.company.tickets.Ticket;
+import com.company.tickets.UnevenTicket;
 import com.company.users.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.Math.abs;
 
@@ -109,17 +114,52 @@ public class Model {
         return ticketContents;
     }
 
-    public void createAndAddTicket(String creator, String event, double amountPaid) {
+    public double[][] getDebtData()
+    {
+
+        System.out.println("getdebt");
+        int i=0;
+        double[][] data = new double[getUserNames().length][getUserNames().length];
+        for (User user: UserDatabase.getInstance())
+        {
+            HashMap<User, Double> debts = user.getOwesUser();
+            int j=0;
+            for (Map.Entry<User,Double> entry : debts.entrySet()) {
+                User u = entry.getKey();
+                data[i][j] = entry.getValue();
+                j++;
+            }
+            i++;
+        }
+        return data;
+    }
+
+    public void createAndAddEvenTicket(String creator, String event, double amountPaid) {
         for (User user:UserDatabase.getInstance())
         {
             if (user.getName().equals(creator))
             {
-                Ticket ticket=tFactory.getEvenTicket(user,amountPaid,event);
+                EvenTicket ticket=tFactory.getEvenTicket(user,amountPaid,event);
                 TicketDatabase.getInstance().addTicket(ticket);
                 break;
             }
 
         }
 
+    }
+    public void createAndAddCustomTicket(String creator, String event, double amountPaid,double[] userdebts) {
+        for (User user : UserDatabase.getInstance()) {
+            if (user.getName().equals(creator)) {
+                UnevenTicket ticket = tFactory.getUnevenTicket(user, amountPaid, event);
+                int i = 0;
+                for (User u : UserDatabase.getInstance()) {
+                    ticket.addPayer(user, userdebts[i]);
+                    i++;
+                }
+                TicketDatabase.getInstance().addTicket(ticket);
+                break;
+            }
+
+        }
     }
 }

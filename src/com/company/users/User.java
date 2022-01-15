@@ -37,6 +37,11 @@ public class User {
 
     }
 
+    public HashMap<User, Double> getOwesUser()
+    {
+        return owesUser;
+    }
+
     public String getName() {
         return name;
     }

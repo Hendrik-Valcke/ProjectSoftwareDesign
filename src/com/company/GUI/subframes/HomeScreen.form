@@ -76,7 +76,9 @@
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <enabled value="false"/>
+                </properties>
               </component>
             </children>
           </grid>
@@ -94,7 +96,9 @@
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <enabled value="false"/>
+                </properties>
               </component>
             </children>
           </grid>
