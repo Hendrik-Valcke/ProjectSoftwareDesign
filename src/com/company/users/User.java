@@ -7,7 +7,7 @@ public class User {
     private String name;
     private double balance;
     private HashMap<User, Double> owesUser;
-    private String passWord;
+    private String password;
 
 
     public User() {
@@ -25,7 +25,7 @@ public class User {
     public User(String name, String pw) {
         this.name = name;
         this.balance = 0;
-        this.passWord=pw;
+        this.password=pw;
         owesUser = new HashMap<>();
 
     }
@@ -41,7 +41,7 @@ public class User {
         return name;
     }
     public String getPassWord() {
-        return passWord;
+        return password;
     }
 
     public void setName(String name) {

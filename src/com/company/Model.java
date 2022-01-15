@@ -20,7 +20,7 @@ public class Model {
 
     public void addUserToDB(String name, String pw)
     {
-        User u = new User(name,pw);
+        User u = uFactory.getUser(name, pw);
         UserDatabase.getInstance().add(u);
     }
 
@@ -64,17 +64,13 @@ public class Model {
 
     public boolean checkLogin(String name, String password)
     {
-        boolean loginSucces=false;
+        boolean loginSuccess = false;
         for (User user : UserDatabase.getInstance()) {
             if (user.getName().equals(name) && user.getPassWord().equals(password)) {
-                loginSucces=true;
+                loginSuccess = true;
+                break;
             }
         }
-        if (loginSucces)
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return loginSuccess;
     }
 }
