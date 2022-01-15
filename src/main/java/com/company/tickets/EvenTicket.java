@@ -15,6 +15,10 @@ public class EvenTicket extends Ticket{
 
     }
 
+    public String getEvent() {
+        return event;
+    }
+
     public User getCreator() {
         return creator;
     }

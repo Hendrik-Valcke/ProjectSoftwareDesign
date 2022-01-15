@@ -13,7 +13,8 @@ public class User {
     public User() {
         this.name = "anonymousUser";
         this.balance = 0;
-        owesUser = new HashMap<>();
+        this.owesUser = new HashMap<>();
+        this.password = "pw";
     }
 
     public User(String name) {
