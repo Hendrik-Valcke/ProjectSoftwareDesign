@@ -29,7 +29,7 @@ public class Model {
         TicketDatabase.getInstance().forEach(Ticket::calculateSplit);
 
         for (User user : UserDatabase.getInstance()) {
-            if (user.getBalance() > 0) {
+            if (user.getBalance() > 0.001) {
                 settleUser(user);
             }
         }
@@ -46,7 +46,6 @@ public class Model {
             // obj user is in debt, but using his entire negative balance to settle up would put the positive balance user
             // in debt
             } else if(obj.isInDebt() && ( (obj.getBalance() + user.getBalance()) < 0 ) ) {
-                System.out.println("passed once");
 
                 obj.addSaldo(user.getBalance());
                 obj.owesTo(user, user.getBalance());

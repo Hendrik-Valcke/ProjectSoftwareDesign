@@ -24,6 +24,13 @@ public class TicketDatabase<T> implements Iterable<T> {
         db.add(t);
     }
 
+    public int size() {
+        return db.size();
+    }
+    public boolean contains(T t) {
+        return db.contains(t);
+    }
+
     public void removeTicket(T t) {
         db.remove(t);
     }

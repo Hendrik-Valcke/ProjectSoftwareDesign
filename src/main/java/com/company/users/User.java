@@ -58,7 +58,7 @@ public class User {
     }
 
     public boolean isInDebt() {
-        return balance < 0 ;
+        return balance < -0.001 ;
     }
 
     public void addSaldo(double amount) {
@@ -71,6 +71,10 @@ public class User {
 
     public void owesTo(User u, double amount) {
         this.owesUser.put(u, amount);
+    }
+
+    public double amountOwedTo(User u) {
+        return this.owesUser.get(u);
     }
 
     public void printDebt() {
