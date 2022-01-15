@@ -46,8 +46,8 @@ public class Controller {
         view.setVisible(true);
     }
     private void go2RemoveUser() {
-        //view.showRemoveUserScreen(new Return2PrevScreenListener,new RemoveUserListener)
-        //view.setVisible(true)
+        view.showRemoveUserScreen(new Return2ScreenListener(),new RemoveUserListener(),getUsernames());
+        view.setVisible(true);
     }
 
 
@@ -71,8 +71,8 @@ public class Controller {
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            String name = view.getCuScreen().getName();
-            String pw= view .getCuScreen().getPassWord();
+            String name = view.getCuScreenName();
+            String pw= view .getCuScreenPassword();
             createUser(name,pw);
             returnToPrevScreen();
         }
@@ -128,6 +128,20 @@ public class Controller {
             returnToPrevScreen();
         }
     }
+    class RemoveUserListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            view.showErrorMessage("Removing a user that is involved in tickets may break the app");
+            String name=view.getRuScreenName();
+            model.removeUserfromDB(name);
+            if (getUsernames().length<=0)
+            {
+                view.showErrorMessage("no more users exist, returning to start");
+                go2Start();
+            }else
+                returnToPrevScreen();
+        }
+    }
 
     //methods to interact with model
     public void createUser(String name, String pw)
@@ -145,7 +159,6 @@ public class Controller {
             view.showErrorMessage("The entered name and password combination don't exist. Try again");
         }
     }
-
     public void returnToPrevScreen()
     {
         System.out.println("returning to "+returnScreen);
@@ -155,12 +168,10 @@ public class Controller {
         }else if (returnScreen.equals("home"))
             go2Home();
     }
-
     public String[] getTicketContents()
     {
         return model.getTicketContents();
     }
-
     public String[] getUsernames()
     {
         String[] usernames=model.getUserNames();

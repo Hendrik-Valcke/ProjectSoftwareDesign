@@ -14,6 +14,7 @@ public class Window extends JFrame {
     private CreateUserScreen cuScreen;
     private LoginScreen loginScreen;
     private HomeScreen homeScreen;
+    private RemoveUserScreen ruScreen;
 
     public Window() {
         super("Moneysplitter");
@@ -42,11 +43,17 @@ public class Window extends JFrame {
         this.setContentPane(cuScreen.getRootPanel());
     }
 
-    public void showHomeScreen(ActionListener logOutListener,ActionListener evenTicketListener,ActionListener specialTicketListener,ActionListener calcListener, ActionListener addUListerner, ActionListener remUListener,String[] ticketContents, String[] userNames)
+    public void showHomeScreen(ActionListener logOutListener,ActionListener evenTicketListener,ActionListener specialTicketListener,ActionListener calcListener, ActionListener addUListener, ActionListener remUListener,String[] ticketContents, String[] userNames)
     {
         homeScreen= new HomeScreen(ticketContents,  userNames);
-        homeScreen.addListener(logOutListener,evenTicketListener,specialTicketListener,calcListener,addUListerner,remUListener);
+        homeScreen.addListener(logOutListener,evenTicketListener,specialTicketListener,calcListener,addUListener,remUListener);
         this.setContentPane(homeScreen.getRootPanel());
+    }
+    public void showRemoveUserScreen(ActionListener cancelListener, ActionListener removeUserListener, String[] userNames)
+    {
+        ruScreen=new RemoveUserScreen(userNames);
+        ruScreen.addListener(cancelListener,removeUserListener);
+        this.setContentPane(ruScreen.getRootPanel());
     }
     public void showEvenTicketScreen()
     {
@@ -60,9 +67,17 @@ public class Window extends JFrame {
     }
 
     //getters
-    public CreateUserScreen getCuScreen()
+    public String getCuScreenName()
     {
-        return cuScreen;
+        return cuScreen.getName();
+    }
+    public String getCuScreenPassword()
+    {
+        return cuScreen.getPassWord();
+    }
+    public String getRuScreenName()
+    {
+        return ruScreen.getName();
     }
 
     public LoginScreen getLoginScreen()

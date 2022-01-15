@@ -26,11 +26,12 @@ public class HomeScreen implements SubFrame{
 
     public HomeScreen(String[] ticketContents, String[] userContents) {
         ticketModel = new DefaultListModel();
-        ticketList.setModel(ticketModel);
         userModel = new DefaultListModel();
-        userList.setModel(new DefaultListModel());
-
         populateLists( ticketContents,  userContents);
+        ticketList.setModel(ticketModel);
+        userList.setModel(userModel);
+
+
     }
 
     @Override
@@ -59,13 +60,6 @@ public class HomeScreen implements SubFrame{
             System.out.println(userContents[i]);
             userModel.addElement(userContents[i]);
         }
-        /*for (String content: ticketContents){
-            ticketModel.addElement(content);
-        }
-
-        userModel.removeAllElements();
-        for (String content: userContents){
-            userModel.addElement(content);
-        }*/
     }
+
 }

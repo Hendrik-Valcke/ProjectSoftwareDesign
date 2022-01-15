@@ -23,6 +23,17 @@ public class Model {
         User u = uFactory.getUser(name, pw);
         UserDatabase.getInstance().add(u);
     }
+    public void removeUserfromDB(String name)
+    {
+        for (User user:UserDatabase.getInstance())
+        {
+            if (user.getName().equals(name))
+            {
+                UserDatabase.getInstance().remove(user);
+                break;
+            }
+        }
+    }
 
     public void calculateTotal() {
         // set all balances
