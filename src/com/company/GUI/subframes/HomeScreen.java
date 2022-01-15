@@ -21,8 +21,16 @@ public class HomeScreen implements SubFrame{
     private JPanel panel4;
     private JButton addUserButton;
     private JButton removeUserButton;
+    private DefaultListModel ticketModel;
+    private DefaultListModel userModel;
 
-    public HomeScreen() {
+    public HomeScreen(String[] ticketContents, String[] userContents) {
+        ticketModel = new DefaultListModel();
+        ticketList.setModel(ticketModel);
+        userModel = new DefaultListModel();
+        userList.setModel(new DefaultListModel());
+
+        populateLists( ticketContents,  userContents);
     }
 
     @Override
@@ -37,5 +45,27 @@ public class HomeScreen implements SubFrame{
         calculateButton.addActionListener(calcListener);
         addUserButton.addActionListener(addUListerner);
         removeUserButton.addActionListener(remUListener);
+    }
+
+    public void populateLists(String[] ticketContents, String[] userContents)
+    {
+        ticketModel.removeAllElements();
+        for (int i = 0; i < ticketContents.length; i++) {
+            ticketModel.addElement(ticketContents[i]);
+        }
+
+        userModel.removeAllElements();
+        for (int i = 0; i < userContents.length; i++) {
+            System.out.println(userContents[i]);
+            userModel.addElement(userContents[i]);
+        }
+        /*for (String content: ticketContents){
+            ticketModel.addElement(content);
+        }
+
+        userModel.removeAllElements();
+        for (String content: userContents){
+            userModel.addElement(content);
+        }*/
     }
 }

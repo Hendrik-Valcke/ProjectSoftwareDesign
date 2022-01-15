@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.GUI.Window;
+import com.company.database.TicketDatabase;
 import com.company.database.UserDatabase;
 
 import java.awt.event.ActionEvent;
@@ -41,7 +42,7 @@ public class Controller {
     public void go2Home()
     {
         returnScreen="home";
-        view.showHomeScreen(new Go2StartListener(),new Go2CreateEvenTicketListener(),new Go2CreateSpecialTicketListener(),new CalcListener(), new Go2CreateUserListener(), new Go2RemoveUserListener());
+        view.showHomeScreen(new Go2StartListener(),new Go2CreateEvenTicketListener(),new Go2CreateSpecialTicketListener(),new CalcListener(), new Go2CreateUserListener(), new Go2RemoveUserListener(), getTicketContents(),getUsernames());
         view.setVisible(true);
     }
     private void go2RemoveUser() {
@@ -153,6 +154,17 @@ public class Controller {
             go2Start();
         }else if (returnScreen.equals("home"))
             go2Home();
+    }
+
+    public String[] getTicketContents()
+    {
+        return model.getTicketContents();
+    }
+
+    public String[] getUsernames()
+    {
+        String[] usernames=model.getUserNames();
+        return usernames;
     }
 
 }

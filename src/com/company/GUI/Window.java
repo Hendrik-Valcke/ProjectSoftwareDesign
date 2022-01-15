@@ -42,9 +42,9 @@ public class Window extends JFrame {
         this.setContentPane(cuScreen.getRootPanel());
     }
 
-    public void showHomeScreen(ActionListener logOutListener,ActionListener evenTicketListener,ActionListener specialTicketListener,ActionListener calcListener, ActionListener addUListerner, ActionListener remUListener)
+    public void showHomeScreen(ActionListener logOutListener,ActionListener evenTicketListener,ActionListener specialTicketListener,ActionListener calcListener, ActionListener addUListerner, ActionListener remUListener,String[] ticketContents, String[] userNames)
     {
-        homeScreen= new HomeScreen();
+        homeScreen= new HomeScreen(ticketContents,  userNames);
         homeScreen.addListener(logOutListener,evenTicketListener,specialTicketListener,calcListener,addUListerner,remUListener);
         this.setContentPane(homeScreen.getRootPanel());
     }

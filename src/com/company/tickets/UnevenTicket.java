@@ -17,7 +17,17 @@ public class UnevenTicket extends Ticket{
         this.amountPayed = amountPayed;
         this.amountsOwed = new HashMap<>();
     }
+    public String getEvent() {
+        return event;
+    }
 
+    public User getCreator() {
+        return creator;
+    }
+
+    public double getAmountPayed() {
+        return amountPayed;
+    }
     public void addPayer(User u, Double d) {
         if(UserDatabase.getInstance().contains(u)) {
             double totalAlreadySplit = 0;

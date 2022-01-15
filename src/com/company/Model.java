@@ -73,4 +73,25 @@ public class Model {
         }
         return loginSuccess;
     }
+    public String[] getUserNames()
+    {
+        String[] usernames = new String[UserDatabase.getInstance().size()];
+        int i=0;
+        for (User user : UserDatabase.getInstance()) {
+            usernames[i]=user.getName();
+            i++;
+        }
+        return usernames;
+    }
+
+    public String[] getTicketContents()
+    {
+        String[] ticketContents = new String[TicketDatabase.getInstance().size()];
+        int i=0;
+        for (Ticket ticket : TicketDatabase.getInstance()) {
+            ticketContents[i]=ticket.getCreator().getName()+ticket.getEvent()+ticket.getAmountPayed();
+            i++;
+        }
+        return ticketContents;
+    }
 }

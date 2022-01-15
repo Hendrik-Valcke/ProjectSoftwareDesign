@@ -29,6 +29,8 @@ public class TicketDatabase<T> implements Iterable<T> {
         db.remove(t);
     }
 
+    public int size() {return this.db.size(); }
+
     @Override
     public Iterator<T> iterator() {
         return this.db.iterator();
