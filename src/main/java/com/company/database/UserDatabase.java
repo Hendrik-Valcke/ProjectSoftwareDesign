@@ -28,6 +28,10 @@ public class UserDatabase<T> implements Iterable<T> {
 
     public boolean contains(User u) {return this.db.contains(u) ;}
 
+    public void clear() {
+        db.clear();
+    }
+
 
     @Override
     public Iterator<T> iterator() {

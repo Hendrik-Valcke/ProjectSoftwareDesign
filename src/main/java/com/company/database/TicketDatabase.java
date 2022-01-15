@@ -35,6 +35,10 @@ public class TicketDatabase<T> implements Iterable<T> {
         db.remove(t);
     }
 
+    public void clear() {
+        this.db.clear();
+    }
+
     @Override
     public Iterator<T> iterator() {
         return this.db.iterator();
@@ -49,4 +53,5 @@ public class TicketDatabase<T> implements Iterable<T> {
     public Spliterator<T> spliterator() {
         return this.db.spliterator();
     }
+
 }

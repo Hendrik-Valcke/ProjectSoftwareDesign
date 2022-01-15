@@ -16,8 +16,10 @@ public class Integration_Test {
 
     @Test
     public void t_addUsersToDB() {
+
         UserFactory factory = new UserFactory();
         UserDatabase<User> udb = UserDatabase.getInstance();
+        udb.clear();
 
         User u1 = factory.getUser("jésus","pw");
         udb.add(u1);
@@ -39,13 +41,14 @@ public class Integration_Test {
     public void t_removeUsersFromDB() {
         UserFactory factory = new UserFactory();
         UserDatabase<User> udb = UserDatabase.getInstance();
+        udb.clear();
 
         User u1 = factory.getUser("jésus","pw");
         User u2 = factory.getUser("John Cena", "    ");
 
         udb.add(u1);
 
-        Assert.assertEquals("UDB SIZE after adding user- should be 1", udb.size(), 1);
+        Assert.assertEquals("UDB SIZE after adding user- should be 1",1 , udb.size());
 
         udb.add(u2);
 
@@ -63,6 +66,7 @@ public class Integration_Test {
     @Test
     public void t_addTicketsToDB() {
         TicketDatabase<Ticket> tdb = TicketDatabase.getInstance();
+        tdb.clear();
         UserFactory factory = new UserFactory();
         User u1 = factory.getUser("jésus","pw");
 
@@ -80,6 +84,8 @@ public class Integration_Test {
     @Test
     public void t_removeTicketsFromDB() {
         TicketDatabase<Ticket> tdb = TicketDatabase.getInstance();
+        tdb.clear();
+
         UserFactory factory = new UserFactory();
         User u1 = factory.getUser("jésus","pw");
 
@@ -99,6 +105,9 @@ public class Integration_Test {
         UserFactory factory = new UserFactory();
         UserDatabase<User> udb = UserDatabase.getInstance();
         TicketDatabase<Ticket> tdb = TicketDatabase.getInstance();
+        udb.clear();
+        tdb.clear();
+
 
         User u1 = factory.getUser("jésus","pw");
         udb.add(u1);
@@ -128,6 +137,8 @@ public class Integration_Test {
         UserFactory factory = new UserFactory();
         UserDatabase<User> udb = UserDatabase.getInstance();
         TicketDatabase<Ticket> tdb = TicketDatabase.getInstance();
+        udb.clear();
+        tdb.clear();
 
         User u1 = factory.getUser("jésus","pw");
         udb.add(u1);
@@ -162,6 +173,8 @@ public class Integration_Test {
         UserFactory factory = new UserFactory();
         UserDatabase<User> udb = UserDatabase.getInstance();
         TicketDatabase<Ticket> tdb = TicketDatabase.getInstance();
+        udb.clear();
+        tdb.clear();
 
         User u1 = factory.getUser("jésus","pw");
         udb.add(u1);
