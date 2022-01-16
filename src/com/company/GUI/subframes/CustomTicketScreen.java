@@ -60,8 +60,7 @@ public class CustomTicketScreen implements SubFrame{
         userModel.removeAllElements();
         System.out.println("update");
         for (int i = 0; i < userString.length; i++) {
-            System.out.println(userString[i]+" "+userDebts[i]);
-            userModel.addElement(userString[i]+" "+userDebts[i]);
+            userModel.addElement(userString[i]+": €"+userDebts[i]);
         }
         userList.setModel(userModel);
     }
