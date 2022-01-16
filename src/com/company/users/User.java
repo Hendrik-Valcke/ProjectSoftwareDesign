@@ -77,6 +77,14 @@ public class User {
         this.owesUser.put(u, amount);
     }
 
+    public double getAmountOwedTo(User u) {
+        if(owesUser.containsKey(u)) {
+            return owesUser.get(u);
+        } else {
+            return 0;
+        }
+    }
+
     public void printDebt() {
         System.out.println("======User: " + this.name + "======");
         for (Map.Entry<User,Double> entry : owesUser.entrySet()) {
