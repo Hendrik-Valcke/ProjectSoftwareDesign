@@ -1,12 +1,9 @@
 package com.company.GUI;
 
-import com.company.Controller;
+
 import com.company.GUI.subframes.*;
-import com.company.users.User;
-import javafx.scene.chart.Axis;
 
 import javax.swing.*;
-import javax.xml.stream.events.StartDocument;
 import java.awt.*;
 import java.awt.event.ActionListener;
 

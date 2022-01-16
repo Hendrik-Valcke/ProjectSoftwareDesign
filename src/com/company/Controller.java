@@ -178,6 +178,9 @@ public class Controller {
             String event=view.getCustomTicktEvent();
             double amountPaid=view.getCustomTicketAmountPaid();
             double[] userDebts=view.getCustomTicketDebts();
+            for (int i = 0; i < userDebts.length ; i++) {
+                System.out.println(userDebts[i]);
+            }
             double sum=0;
             for (int i = 0; i < userDebts.length; i++) {
                 sum=sum+userDebts[i];

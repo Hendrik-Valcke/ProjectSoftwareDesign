@@ -57,7 +57,6 @@ public class HomeScreen implements SubFrame{
 
         userModel.removeAllElements();
         for (int i = 0; i < userContents.length; i++) {
-            System.out.println(userContents[i]);
             userModel.addElement(userContents[i]);
         }
     }
