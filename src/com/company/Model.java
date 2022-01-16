@@ -140,9 +140,7 @@ public class Model {
                 TicketDatabase.getInstance().addTicket(ticket);
                 break;
             }
-
         }
-
     }
     public void createAndAddCustomTicket(String creator, String event, double amountPaid,double[] userdebts) {
         for (User user : UserDatabase.getInstance()) {

@@ -25,7 +25,7 @@ public class EndScreen implements SubFrame {
         debtsModel=new DefaultListModel();
         userModel.removeAllElements();
         for (int i = 0; i < userNames.length; i++) {
-            System.out.println(userNames[i]);
+            //System.out.println(userNames[i]);
             userModel.addElement(userNames[i]);
         }
         userList.setModel(userModel);
@@ -44,10 +44,18 @@ public class EndScreen implements SubFrame {
     }
     public void updateDebts()
     {
+        System.out.println(userString.length);
+        for (int i = 0; i <userString.length ; i++) {
+            for (int j = 0; j <userString.length ; j++) {
+                System.out.println(debtData[i][j]);
+            }
+        }
+
         debtsModel.removeAllElements();
         for (int i = 0; i < userString.length; i++) {
-            debtsModel.addElement(userString[i] +debtData[userList.getSelectedIndex()][i]);
+            debtsModel.addElement("€"+debtData[userList.getSelectedIndex()][i]+" to "+userString[i]);
         }
+        debtList.setModel(debtsModel);
     }
 
     public void addListener(ActionListener cancelListener) {

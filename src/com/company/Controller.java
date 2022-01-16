@@ -229,7 +229,8 @@ public class Controller {
     }
     public double[][] getDebtData()
     {
-        System.out.println("getdebtdata");
+        model.calculateTotal();
+        //model.printDebts();
         return model.getDebtData() ;
     }
 
