@@ -44,4 +44,12 @@ public class TicketDatabase<T> implements Iterable<T> {
     public Spliterator<T> spliterator() {
         return this.db.spliterator();
     }
+
+    public void clear() {
+        this.db.clear();
+    }
+
+    public boolean contains(T t1) {
+        return this.db.contains(t1);
+    }
 }

@@ -43,4 +43,8 @@ public class UserDatabase<T> implements Iterable<T> {
     public Spliterator<T> spliterator() {
         return this.db.spliterator();
     }
+
+    public void clear() {
+        this.db.clear();
+    }
 }
