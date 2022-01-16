@@ -13,8 +13,6 @@ import static java.lang.Math.abs;
 
 
 public class Model {
-    //private TicketDatabase ticketDB;
-    //private UserDatabase userDB;
     private UserFactory uFactory;
     private TicketFactory tFactory;
 
@@ -113,8 +111,6 @@ public class Model {
 
     public double[][] getDebtData()
     {
-
-        System.out.println("getdebt");
 
         double [][] data = new double[UserDatabase.getInstance().size()][UserDatabase.getInstance().size()];
         int i=0;
