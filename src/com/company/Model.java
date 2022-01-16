@@ -65,7 +65,6 @@ public class Model {
             // obj user is in debt, but using his entire negative balance to settle up would put the positive balance user
             // in debt
             } else if(obj.isInDebt() && ( (obj.getBalance() + user.getBalance()) < 0 ) ) {
-                System.out.println("passed once");
 
                 obj.addSaldo(user.getBalance());
                 obj.owesTo(user, user.getBalance());
@@ -118,18 +117,16 @@ public class Model {
     {
 
         System.out.println("getdebt");
+
+        double [][] data = new double[UserDatabase.getInstance().size()][UserDatabase.getInstance().size()];
         int i=0;
-        double[][] data = new double[getUserNames().length][getUserNames().length];
-        for (User user: UserDatabase.getInstance())
-        {
-            HashMap<User, Double> debts = user.getOwesUser();
+        for(User user: UserDatabase.getInstance()) {
             int j=0;
-            for (Map.Entry<User,Double> entry : debts.entrySet()) {
-                User u = entry.getKey();
-                data[i][j] = entry.getValue();
-                j++;
+            for(User userOwedTo : UserDatabase.getInstance()) {
+                data[i][j] = user.getAmountOwedTo(userOwedTo);
+                j+=1;
             }
-            i++;
+            i+=1;
         }
         return data;
     }
