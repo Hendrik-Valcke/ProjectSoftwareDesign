@@ -1,7 +1,6 @@
 package com;
 
 import com.GUI.Window;
-import com.database.UserDatabase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +21,7 @@ public class Controller {
     {
         returnScreen="start";
         //if there are no users, show a grayed out loginbutton
-        view.showStartScreen(UserDatabase.getInstance().size() != 0, new Go2CreateUserListener(), new Go2LoginListener());
+        view.showStartScreen(model.getUserNames().length != 0, new Go2CreateUserListener(), new Go2LoginListener());
         view.setVisible(true);
     }
     public void go2CreateUser()
@@ -125,7 +124,6 @@ public class Controller {
     {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            System.out.println("end");
             go2EndScreen();
         }
     }
@@ -207,7 +205,7 @@ public class Controller {
         {
             go2Home();
         }else{//login failed: show error and reset loginscreen
-            view.showErrorMessage("The entered name and password combination don't exist. Try again");
+            view.showErrorMessage("The entered name and password combination doesn't exist. Try again");
         }
     }
     public void returnToPrevScreen()

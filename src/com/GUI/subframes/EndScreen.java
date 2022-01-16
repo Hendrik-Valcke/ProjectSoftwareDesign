@@ -44,12 +44,12 @@ public class EndScreen implements SubFrame {
     }
     public void updateDebts()
     {
-        System.out.println(userString.length);
+        /*System.out.println(userString.length);
         for (int i = 0; i <userString.length ; i++) {
             for (int j = 0; j <userString.length ; j++) {
                 System.out.println(debtData[i][j]);
             }
-        }
+        }*/
 
         debtsModel.removeAllElements();
         for (int i = 0; i < userString.length; i++) {
