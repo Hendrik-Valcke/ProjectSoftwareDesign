@@ -9,13 +9,6 @@ public class User {
     private HashMap<User, Double> owesUser;
     private String password;
 
-
-    public User() {
-        this.name = "anonymousUser";
-        this.balance = 0;
-        owesUser = new HashMap<>();
-    }
-
     public User(String name) {
         this.name = name;
         this.balance = 0;
@@ -30,27 +23,12 @@ public class User {
 
     }
 
-    public User(String name, double balance) {
-        this.name = name;
-        this.balance = balance;
-        owesUser = new HashMap<>();
-
-    }
-
-    public HashMap<User, Double> getOwesUser()
-    {
-        return owesUser;
-    }
 
     public String getName() {
         return name;
     }
     public String getPassWord() {
         return password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getBalance() {

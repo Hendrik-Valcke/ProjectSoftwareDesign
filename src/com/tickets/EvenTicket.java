@@ -34,7 +34,6 @@ public class EvenTicket extends Ticket{
         creator.addSaldo(UserDatabase.getInstance().size()*individualAmount);
     }
 
-    @Override
     public void printTicket() {
         System.out.println("-------------------" +
                 "\nEvent: " + event +

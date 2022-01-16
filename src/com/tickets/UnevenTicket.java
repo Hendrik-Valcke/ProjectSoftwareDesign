@@ -28,6 +28,7 @@ public class UnevenTicket extends Ticket{
     public double getAmountPayed() {
         return amountPayed;
     }
+
     public void addPayer(User u, Double d) {
         if(UserDatabase.getInstance().contains(u)) {
             double totalAlreadySplit = 0;
@@ -53,7 +54,7 @@ public class UnevenTicket extends Ticket{
         }
     }
 
-    @Override
+
     public void printTicket() {
         StringBuilder personsThatPay = new StringBuilder();
         Double moneyReturned = 0.0;

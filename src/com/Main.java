@@ -36,24 +36,6 @@ public class Main {
         ////maak db aan
         System.out.println("make model");
         Model model= new Model();
-        UserDatabase<User> Udb = UserDatabase.getInstance();
-        TicketDatabase<Ticket> Tdb = TicketDatabase.getInstance();
-        //UserFactory Uf = new UserFactory();
-
-        /*User jeff = Uf.getUser("jeff");
-        User bart = Uf.getUser("bart");
-        Udb.add(bart);
-        Udb.add(jeff);
-
-        UnevenTicket t = new UnevenTicket(bart, 200,"cinema");
-        t.addPayer(jeff, 10.0);
-        Tdb.addTicket(t);
-
-        Tdb.forEach(Ticket::printTicket);
-        Udb.forEach(User::printUser);
-
-        model.calculateTotal();
-        model.printDebts();*/
 
         ////maak window aan
         System.out.println("make view");

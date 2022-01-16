@@ -22,7 +22,7 @@ public class Controller {
     {
         returnScreen="start";
         //if there are no users, show a grayed out loginbutton
-        view.showStartScreen(UserDatabase.getInstance().size() != 0, new Go2CreateUserListener(), new Go2LoginListener());
+        view.showStartScreen(model.getUserNames().length != 0, new Go2CreateUserListener(), new Go2LoginListener());
         view.setVisible(true);
     }
     public void go2CreateUser()
@@ -176,12 +176,12 @@ public class Controller {
             String event=view.getCustomTicktEvent();
             double amountPaid=view.getCustomTicketAmountPaid();
             double[] userDebts=view.getCustomTicketDebts();
-            for (int i = 0; i < userDebts.length ; i++) {
-                System.out.println(userDebts[i]);
+            for (double userDebt : userDebts) {
+                System.out.println(userDebt);
             }
             double sum=0;
-            for (int i = 0; i < userDebts.length; i++) {
-                sum=sum+userDebts[i];
+            for (double userDebt : userDebts) {
+                sum = sum + userDebt;
             }
             if (amountPaid==sum)
             {
@@ -225,8 +225,7 @@ public class Controller {
     }
     public String[] getUsernames()
     {
-        String[] usernames=model.getUserNames();
-        return usernames;
+        return model.getUserNames();
     }
     public double[][] getDebtData()
     {
