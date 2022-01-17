@@ -19,7 +19,7 @@ public class EvenTicket_UTest {
 
     @Test
     public void t_getCreator() {
-        User user =new User();
+        User user =new User("bert");
         EvenTicket evenTicketUnderTest = new EvenTicket(user, 10.5, "event0");
 
         Assert.assertEquals("Testing creator - input="+ user + " - should be " +user, user, evenTicketUnderTest.getCreator());
@@ -29,7 +29,7 @@ public class EvenTicket_UTest {
 
     @Test
     public void t_getAmountPayed() {
-        User user =new User();
+        User user =new User("Mo");
         EvenTicket evenTicketUnderTest = new EvenTicket(user, 10.5, "event0");
 
         Assert.assertEquals("Testing amount payed - input=10- should be 10", 10.5, evenTicketUnderTest.getAmountPayed(), 0.0001);
@@ -38,7 +38,7 @@ public class EvenTicket_UTest {
 
     @Test
     public void t_getEvent() {
-        User user = new User();
+        User user = new User("Sjaak");
         EvenTicket evenTicketUnderTest = new EvenTicket(user, 10, "event0");
 
         Assert.assertEquals("Testing naming - input=event0 - should be event0", "event0", evenTicketUnderTest.getEvent());
